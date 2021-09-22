@@ -1,0 +1,3 @@
+Hii 
+I am opening test.txt file by bash command
+  :- notepad test.txt.
