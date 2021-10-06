@@ -1,0 +1,4 @@
+
+#Bash command
+echo "Hii"
+ls command is write
