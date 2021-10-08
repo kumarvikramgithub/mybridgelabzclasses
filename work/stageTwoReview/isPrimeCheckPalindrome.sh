@@ -26,12 +26,7 @@ function isPalindrome () {
 		num=$(($num/10));
 		temp=$(( $temp*10+$rem));
 	done
-	if [ $temp -eq $num2 ]
-	then
-		echo 1;
-	else
-		echo 0;
-	fi
+	echo $temp;
 
 }
 read -p "Enter a Number " n;
@@ -39,11 +34,12 @@ checkPrime=$( isPrime $n );
 if [ $checkPrime -eq 1 ]
 then
 	checkPalindrome=$( isPalindrome $n );
-	if [ $checkPalindrome -eq 1 ]
+	check=$( isPrime $checkPalindrome );
+	if [ $check -eq 1 ]
 	then
-        	echo "Number $n is prime and Palindrome is also Prime";
+        	echo "Number $n is prime and Palindrome $checkPalindrome is also Prime";
 	else
-		echo "Number $n is Prime but not a Palindrome Number";
+		echo "Number $n is Prime but Palindrome $checkPalindrome is not a Prime";
 	fi
 else
 echo "Number $n is not Prime";
