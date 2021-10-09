@@ -16,29 +16,28 @@ max_in_month_work=20;
 #else
 	#echo Wage = 0 Re. ";
 #fi
+function getWorkHour () {
+	case $1 in
+                1)
+                echo $full_day_hour;
+                ;;
+                2)
+          	echo $part_time_day_hour;
+		;;
+		*)
+		echo 0;
+		;;
+	esac
+}
 total_wages=0;
 total_hour_work=0;
 for (( i=1;i<=20;i++ ))
 do
 	isPresent=$((RANDOM%3));
-	#wages=0;
-	work_hour=0;
-	case $isPresent in
-		1)
-        	wage=$(($wage_per_hour*$full_day_hour));
-        	work_hour=8;
-		;;
-		2)
-		wage=$(($wage_per_hour*$part_time_day_hour));
-        	 work_hour=4;
-		;;
-		*)
-		wage=0;
-		work_hour=0;
-		;;
-	esac;
-	 total_wages=$(($total_wages+$wage));
-         total_hour_work=$(($total_hour_work+$work_hour));
+	work_hour=$( getWorkHour $isPresent );
+	wage=$(($wage_per_hour*$work_hour));
+	total_wages=$(($total_wages+$wage));
+        total_hour_work=$(($total_hour_work+$work_hour));
 
 	if [ $total_hour_work -ge $max_hour_in_month ]
 	then
