@@ -31,6 +31,7 @@ function getWorkHour () {
 }
 total_wages=0;
 total_hour_work=0;
+declare -A dailyWage;
 for (( i=1;i<=20;i++ ))
 do
 	isPresent=$((RANDOM%3));
@@ -45,5 +46,10 @@ do
 		total_hour_work=$(($total_hour_work-$work_hour));
 		break;
 	fi
+	dailyWage[day$i]=$wage;
 done
 echo "Total Wages = $total_wages for $total_hour_work Hour Work.";
+for key in ${!dailyWage[@]}
+do
+	echo "$key Wage = ${dailyWage[$key]} Re.";
+done
