@@ -2,6 +2,7 @@
 wage_per_hour=20;
 full_day_hour=8;
 part_time_day_hour=4;
+max_hour_in_month=100;
 max_in_month_work=20;
 #isPresent=$((RANDOM%3));
 #if [ $isPresent -eq 1 ]
@@ -36,7 +37,14 @@ do
 		work_hour=0;
 		;;
 	esac;
-	total_wages=$(($total_wages+$wage));
-	total_hour_work=$(($total_hour_work+$work_hour));
+	 total_wages=$(($total_wages+$wage));
+         total_hour_work=$(($total_hour_work+$work_hour));
+
+	if [ $total_hour_work -ge $max_hour_in_month ]
+	then
+		total_wages=$(($total_wages-$wage));
+		total_hour_work=$(($total_hour_work-$work_hour));
+		break;
+	fi
 done
 echo "Total Wages = $total_wages for $total_hour_work Hour Work.";
